@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1 id="title">OMDBAPI's Movies</h1>
+<form>
+    <label for="movie">Movie:</label><br>
+    <input type="text" id="movie" name="movie" value="Guardians of the Galaxy" onkeypress="handleKeyPress(event)"><br><br>
+    <input type="button" value="Submit" onclick="loadGetMsg()">
+</form>
+<div id="getrespmsg"></div>
+<br><br>
+<img src="/image.jpg" alt="Gatitos" id="gatitos">
+<script src="data.js"></script>
+</body>
+</html>
