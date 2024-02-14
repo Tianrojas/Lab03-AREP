@@ -38,6 +38,9 @@ public class HttpServer {
         }
     }
 
+    /**
+     * Configura los servicios GET y POST usando funciones lambda para la aplicación Spark.
+     */
     private static void configureLambdaSpark(){
         setStaticFilesDirectory("/public");
         get("/movie", (uriIN) -> {
@@ -113,7 +116,11 @@ public class HttpServer {
         }
     }
 
-
+    /**
+     * Establece el directorio de los archivos estáticos.
+     *
+     * @param directory El directorio de los archivos estáticos.
+     */
     public static void setStaticFilesDirectory(String directory) {
         staticFilesDirectory = directory;
     }
@@ -139,6 +146,13 @@ public class HttpServer {
         return outputline;
     }
 
+    /**
+     * Sirve un archivo estático.
+     *
+     * @param requestedURI La URI solicitada por el cliente.
+     * @return El contenido del archivo estático.
+     * @throws IOException Si ocurre un error al leer el archivo.
+     */
     private static String serveStaticFile(URI requestedURI) throws IOException {
         String outputline = "";
         Path file = Paths.get("target/classes" + staticFilesDirectory + requestedURI.getPath());
@@ -219,6 +233,12 @@ public class HttpServer {
         return errorPage;
     }
 
+    /**
+     * Genera una página de saludo HTTP básica.
+     *
+     * @param query Los parámetros de la consulta.
+     * @return La página de saludo generada.
+     */
     private static String httpHello(String query) {
         String helloPage = "HTTP/1.1 200 OK\r\n"
                 + "Content-Type: text/html\r\n"
@@ -295,12 +315,23 @@ public class HttpServer {
         return fileName.substring(dotIndex + 1);
     }
 
+    /**
+     * Registra un manejador para solicitudes GET en la ruta especificada.
+     *
+     * @param path     La ruta para la solicitud GET.
+     * @param handler  El manejador de la solicitud.
+     */
     public static void get(String path, Function handler) {
         getHandlers.put(path, handler);
     }
 
+    /**
+     * Registra un manejador para solicitudes POST en la ruta especificada.
+     *
+     * @param path     La ruta para la solicitud POST.
+     * @param handler  El manejador de la solicitud.
+     */
     public static void post(String path, Function handler) {
         postHandlers.put(path, handler);
     }
-
 }
